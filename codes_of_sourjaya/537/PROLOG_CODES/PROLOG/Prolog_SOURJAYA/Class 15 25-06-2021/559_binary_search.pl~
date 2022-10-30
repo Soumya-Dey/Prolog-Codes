@@ -1,0 +1,27 @@
+insert_sort(List,S):- i_sort(List,[],S).
+i_sort([],A,A).
+i_sort([H|T],A,S):-insert(H,A,NA),i_sort(T,NA,S).
+insert(X,[],[X]).
+insert(X,[Y|T],[Y|NT]):-X>Y,insert(X,T,NT).
+insert(X,[Y|T],[X,Y|T]):-X=<Y.
+
+list_length([],0).
+list_length([_|TAIL],N):-list_length(TAIL,N1),N is N1+1.
+
+mid_ele([_|T],MID,L,M,A):- Q is mod(L,2),Q=:=0,M < MID-1 , M1 is M+1, mid_ele(T,MID,L,M1,A) ; Q is mod(L,2),Q\=0,M =< MID-1 , M1 is M+1, mid_ele(T,MID,L,M1,A).
+mid_ele([H|_],_,_,_,H).
+
+mid([H|T],ELE):-list_length([H|T],N),N1 is N // 2,mid_ele([H|T],N1,N,0,ELE).
+
+binary_search([H|T],X):-insert_sort([H|T],S),search(S,X).
+search([H|T],X):-mid([H|T],M), X<M, left_part([H|T],M,LEFT),search(LEFT,X);
+                 mid([H|T],M), X>M, right_part([H|T],M,RIGHT),search(RIGHT,X);write('Search successful').
+
+search([],_):-write('Search unsuccessful').
+
+left_part([H|T],M,[H|T1]):-H<M,left_part(T,M,T1).
+left_part([_|_],_,[]).
+
+right_part([H|T],M,T1):-H=<M,right_part(T,M,T1).
+right_part([H|T],M,[H|T1]):-right_part(T,M,T1).
+right_part([],_,[]).

@@ -1,0 +1,4 @@
+lcm(X,Y,N,T):- R is mod(N,X),S is mod(N,Y),R is 0, S is 0, T is N; N1 is N+1, lcm(X,Y,N1,T).
+
+lcm1(X,Y,N,T):- R is mod(N,X),S is mod(N,Y),R is 0, S is 0, T is N; N1 is N+1, lcm1(X,Y,N1,T).
+lcm(X,Y,T):- lcm1(X,Y,1,T).

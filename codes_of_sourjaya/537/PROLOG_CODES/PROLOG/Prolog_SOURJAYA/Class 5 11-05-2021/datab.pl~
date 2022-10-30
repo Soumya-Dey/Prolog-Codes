@@ -1,0 +1,2 @@
+has_car(ram,car(ford,2,3500000)).
+has_car(sam,car(ford,2,500000)).

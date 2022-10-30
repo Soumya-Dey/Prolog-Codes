@@ -1,0 +1,37 @@
+e_detls(chandan,dept(chandan,cs),manager(chandan,arnab),boss(ss),com_dir(sxc),basic(14999),exp(7)).
+
+e_detls(arnab,dept(arnab,cs),manager(arnab,nil),boss(ss),com_dir(sxc),basic(24999),exp(15)).
+
+e_detls(sayan,dept(sayan,mca),manager(sayan,suman),boss(ss),com_dir(sxc),basic(7499),exp(4)).
+
+e_detls(suman,dept(suman,mca),manager(suman,nil),boss(ss),com_dir(sxc),basic(20099),exp(12)).
+
+e_detls(biswajit,dept(biswajit,bcs),manager(biswajit,rajesh),boss(nil),com_dir(nil),basic(10000),exp(6)).
+
+e_detls(rajesh,dept(rajesh,bcs),manager(rajesh,nil),boss(ss),com_dir(sxc),basic(30000),exp(13)).
+
+e_detls(ss,dept(ss,adms),manager(ss,nil),boss(sxc),com_dir(sxc),basic(44499),exp(21)).
+
+e_detls(sxc,dept(sxc,adms),manager(sxc,nil),boss(nil),com_dir(sxc),basic(79999),exp(25)).
+
+e_detls(x,dept(sxc,adms),manager(x,nil),boss(nil),com_dir(nil),basic(00000),exp(0)).
+
+
+
+dept(X,Y):-e_detls(X,dept(X,Y),manager(_,_),boss(_),com_dir(_),basic(_),exp(_)).
+
+
+manager(X,Y):-e_detls(X,dept(_,_),manager(X,Y),boss(_),com_dir(_),basic(_),exp(_)).
+
+
+basic_sal(X,Y):-e_detls(X,dept(_,_),manager(_,_),boss(_),com_dir(_),basic(Y),exp(_)).
+
+real_sal(X,Y):-e_detls(X,dept(_,_),manager(_,_),boss(_),com_dir(_),basic(Y1),exp(Z)),Z>5,Y is Y1+5000.
+
+real_sal(X,Y):-e_detls(X,dept(_,_),manager(_,_),boss(_),com_dir(_),basic(Y1),exp(Z)),Z=<5,Y is Y1.
+
+valid(X):-e_detls(X,dept(_,_),manager(X,Y),boss(_),com_dir(_),basic(_),exp(_)),not(Y=nil).
+
+valid(X):-e_detls(X,dept(_,_),manager(X,nil),boss(X1),com_dir(_),basic(_),exp(_)),not(X1=nil).
+
+valid(X):-e_detls(X,dept(_,_),manager(X,nil),boss(nil),com_dir(Z),basic(_),exp(_)),not(Z=nil).

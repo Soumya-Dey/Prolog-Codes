@@ -1,0 +1,9 @@
+%a_reverse([],R,R).
+%a_reverse([X|T],H,[Y|S]):-a_reverse(T,[X|H],[Y|S]).
+
+
+%array_append([X1|T1],[X2|T2],R):-array_append([X1|T1],[X2|T2],[],R).
+%array_append([X1|T1],[X2|T2],H,R):-
+
+add_tail([],X,[X]).
+add_tail([H|T],X,[H|L]):-add_tail(T,X,L).

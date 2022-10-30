@@ -1,0 +1,9 @@
+student(ram).
+student(shyam).
+student(jadhu).
+teacher(madhu).
+teacher(haren).
+teaches(madhu,jadhu).
+teaches(madhu,ram).
+teaches(haren,shyam).
+teaches(haren,ram).

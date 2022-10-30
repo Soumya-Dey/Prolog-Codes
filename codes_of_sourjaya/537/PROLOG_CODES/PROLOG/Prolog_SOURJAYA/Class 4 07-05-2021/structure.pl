@@ -1,0 +1,21 @@
+%create
+node(2,node(6,node(7,node(8,nil)))).
+
+add_begin(D,L,LIST):-LIST = node(L,D).
+
+length_list(nil,0).
+length_list(node(_,T),L):-length_list(T,L1),L is L1+1.
+
+insert_at_beg(node(H,T),L2,L):-L=node(L2,node(H,T)).
+
+
+% mid(node(H,T)):-length_list(node(H,T),L),LEN is
+% floor(L/2),mid1(node(H,T),LEN).
+%mid1(node(H,T),L):- L1 is L-1, mid1(T,L1).
+%mid1(node(H,T),0):-write(H).
+
+get_mid(node(H,T),L):-mid(node(H,node(Y,T)),1,L).
+
+mid(node(H,node(Y,T)),C,L):- C mod 2 =:=0,L is Y,C1 is C+1,mid(T,C1,L1);C1 is C+1,mid(T,C1,L1).
+
+mid(nil,_,L).
